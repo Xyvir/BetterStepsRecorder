@@ -396,3 +396,20 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/src/Better Steps Recorder/.vs/Better Steps Recorder/v17/.suo
+/src/Better Steps Recorder/obj/Better Steps Recorder.csproj.nuget.dgspec.json
+/src/Better Steps Recorder/obj/Better Steps Recorder.csproj.nuget.g.props
+/src/Better Steps Recorder/obj/Debug/net8.0-windows/Better Steps Recorder.AssemblyInfo.cs
+/src/Better Steps Recorder/obj/Debug/net8.0-windows/Better Steps Recorder.AssemblyInfoInputs.cache
+/src/Better Steps Recorder/obj/Debug/net8.0-windows/Better Steps Recorder.assets.cache
+/src/Better Steps Recorder/obj/Debug/net8.0-windows/Better Steps Recorder.csproj.AssemblyReference.cache
+/src/Better Steps Recorder/obj/Debug/net8.0-windows/Better Steps Recorder.csproj.CoreCompileInputs.cache
+/src/Better Steps Recorder/obj/Debug/net8.0-windows/Better Steps Recorder.csproj.FileListAbsolute.txt
+/src/Better Steps Recorder/obj/Debug/net8.0-windows/Better Steps Recorder.csproj.GenerateResource.cache
+/src/Better Steps Recorder/obj/Debug/net8.0-windows/Better Steps Recorder.csproj.ResolveComReference.cache
+/src/Better Steps Recorder/obj/Debug/net8.0-windows/Better Steps Recorder.designer.runtimeconfig.json
+/src/Better Steps Recorder/obj/Debug/net8.0-windows/Better Steps Recorder.GeneratedMSBuildEditorConfig.editorconfig
+/src/Better Steps Recorder/obj/Debug/net8.0-windows/Better Steps Recorder.sourcelink.json
+/src/Better Steps Recorder/obj/Debug/net8.0-windows/Interop.UIAutomationClient.dll
+/src/Better Steps Recorder/obj/project.assets.json
+/src/Better Steps Recorder/obj/project.nuget.cache
