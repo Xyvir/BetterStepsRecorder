@@ -31,17 +31,10 @@
     <Content Include="stepsrecorder_r2p_icon.ico" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="UIAutomationClient">
-      <HintPath>C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\8.0.6\ref\net8.0\UIAutomationClient.dll</HintPath>
-    </Reference>
-    <Reference Include="UIAutomationTypes">
-      <HintPath>C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\8.0.6\ref\net8.0\UIAutomationTypes.dll</HintPath>
-    </Reference>
-    <Reference Include="WindowsBase">
-      <HintPath>C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\8.0.6\ref\net8.0\WindowsBase.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+<ItemGroup>
+	<FrameworkReference Include="Microsoft.WindowsDesktop.App"/>
+</ItemGroup>
+
 
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
