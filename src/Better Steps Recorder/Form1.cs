@@ -25,6 +25,29 @@ namespace Better_Steps_Recorder
 
 
         }
+        private void DrawCrosshairs(PictureBox pictureBox, int x, int y)
+        {
+            if (pictureBox.Image == null)
+                return;
+
+            // Create a copy of the image to draw on
+            Bitmap bitmap = new Bitmap(pictureBox.Image);
+            using (Graphics g = Graphics.FromImage(bitmap))
+            {
+                // Define the crosshair properties
+                Pen pen = new Pen(Color.HotPink, 2);
+                int crosshairSize = 40;
+
+                // Draw horizontal line
+                g.DrawLine(pen, x - crosshairSize, y, x + crosshairSize, y);
+
+                // Draw vertical line
+                g.DrawLine(pen, x, y - crosshairSize, x, y + crosshairSize);
+            }
+
+            // Set the modified image back to the PictureBox
+            pictureBox.Image = bitmap;
+        }
         private void ListBox1_KeyDown(object sender, KeyEventArgs e)
         {
             // Check if the Delete key was pressed
@@ -47,7 +70,7 @@ namespace Better_Steps_Recorder
             richTextBox_stepText.Text = null;
         }
 
-
+        // This is the logic for whenever the 'active' event is changed.
         private void Listbox_Events_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Listbox_Events.SelectedItem is RecordEvent selectedEvent)
@@ -68,6 +91,9 @@ namespace Better_Steps_Recorder
                             // Create a Bitmap from the MemoryStream and set it to the PictureBox
                             pictureBox1.Image = new Bitmap(ms);
                         }
+
+                        // Draw crosshairs at the mouse coordinates
+                        DrawCrosshairs(pictureBox1, selectedEvent.MouseCoordinates.X, selectedEvent.MouseCoordinates.Y);
                     }
                     catch (Exception ex)
                     {
@@ -240,6 +266,25 @@ namespace Better_Steps_Recorder
             }
         }
 
+        private void exportToolMDStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Program.zip?.SaveToZip();
+          
+            //using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            //{
+            //    saveFileDialog.Filter = "Rich Text Format|*.rtf";
+            //    saveFileDialog.Title = "Export to RTF Document";
+            //    if (Program.zip?.zipFilePath != null)
+            //    {
+            //        saveFileDialog.FileName = Path.GetFileNameWithoutExtension(Program.zip.zipFilePath) + ".rtf";
+            //    }
+            //    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            //    {
+            //        string docPath = saveFileDialog.FileName;
+            //        Program.ExportToRTF(docPath);
+            //    }
+            //}
+        }
 
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)

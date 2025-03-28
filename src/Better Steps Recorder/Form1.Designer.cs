@@ -48,6 +48,7 @@
             toolStripMenuItem1_SaveAs = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             exportToolStripMenuItem = new ToolStripMenuItem();
+            exportToolMDStripMenuItem = new ToolStripMenuItem();
             ToolStripMenuItem_Recording = new ToolStripMenuItem();
             helpToolStripMenuItem = new ToolStripMenuItem();
             contextMenu_ListBox_Events.SuspendLayout();
@@ -72,11 +73,11 @@
             Listbox_Events.AllowDrop = true;
             Listbox_Events.Dock = DockStyle.Fill;
             Listbox_Events.FormattingEnabled = true;
-            Listbox_Events.ItemHeight = 15;
             Listbox_Events.Location = new Point(0, 0);
+            Listbox_Events.Margin = new Padding(3, 4, 3, 4);
             Listbox_Events.Name = "Listbox_Events";
             Listbox_Events.SelectionMode = SelectionMode.MultiExtended;
-            Listbox_Events.Size = new Size(354, 156);
+            Listbox_Events.Size = new Size(405, 209);
             Listbox_Events.TabIndex = 1;
             Listbox_Events.SelectedIndexChanged += Listbox_Events_SelectedIndexChanged;
             Listbox_Events.DragDrop += Listbox_Events_DragDrop;
@@ -87,28 +88,29 @@
             // 
             // contextMenu_ListBox_Events
             // 
+            contextMenu_ListBox_Events.ImageScalingSize = new Size(20, 20);
             contextMenu_ListBox_Events.Items.AddRange(new ToolStripItem[] { moveUpToolStripMenuItem, moveDownToolStripMenuItem, deleteToolStripMenuItem });
             contextMenu_ListBox_Events.Name = "contextMenuStrip1";
-            contextMenu_ListBox_Events.Size = new Size(139, 70);
+            contextMenu_ListBox_Events.Size = new Size(159, 76);
             // 
             // moveUpToolStripMenuItem
             // 
             moveUpToolStripMenuItem.Name = "moveUpToolStripMenuItem";
-            moveUpToolStripMenuItem.Size = new Size(138, 22);
+            moveUpToolStripMenuItem.Size = new Size(158, 24);
             moveUpToolStripMenuItem.Text = "Move Up";
             moveUpToolStripMenuItem.Click += moveUpToolStripMenuItem_Click;
             // 
             // moveDownToolStripMenuItem
             // 
             moveDownToolStripMenuItem.Name = "moveDownToolStripMenuItem";
-            moveDownToolStripMenuItem.Size = new Size(138, 22);
+            moveDownToolStripMenuItem.Size = new Size(158, 24);
             moveDownToolStripMenuItem.Text = "Move Down";
             moveDownToolStripMenuItem.Click += moveDownToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(138, 22);
+            deleteToolStripMenuItem.Size = new Size(158, 24);
             deleteToolStripMenuItem.Text = "Delete";
             deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
@@ -118,9 +120,10 @@
             propertyGrid_RecordEvent.Dock = DockStyle.Fill;
             propertyGrid_RecordEvent.Enabled = false;
             propertyGrid_RecordEvent.Location = new Point(0, 0);
+            propertyGrid_RecordEvent.Margin = new Padding(3, 4, 3, 4);
             propertyGrid_RecordEvent.Name = "propertyGrid_RecordEvent";
             propertyGrid_RecordEvent.RightToLeft = RightToLeft.Yes;
-            propertyGrid_RecordEvent.Size = new Size(354, 427);
+            propertyGrid_RecordEvent.Size = new Size(405, 573);
             propertyGrid_RecordEvent.TabIndex = 4;
             propertyGrid_RecordEvent.ToolbarVisible = false;
             // 
@@ -130,6 +133,7 @@
             splitContainer1.BorderStyle = BorderStyle.Fixed3D;
             splitContainer1.Dock = DockStyle.Fill;
             splitContainer1.Location = new Point(0, 0);
+            splitContainer1.Margin = new Padding(3, 4, 3, 4);
             splitContainer1.Name = "splitContainer1";
             splitContainer1.Orientation = Orientation.Horizontal;
             // 
@@ -142,10 +146,10 @@
             // 
             splitContainer1.Panel2.BackColor = SystemColors.ActiveCaption;
             splitContainer1.Panel2.Controls.Add(propertyGrid_RecordEvent);
-            splitContainer1.Size = new Size(358, 601);
-            splitContainer1.SplitterDistance = 160;
+            splitContainer1.Size = new Size(409, 803);
+            splitContainer1.SplitterDistance = 213;
             splitContainer1.SplitterIncrement = 5;
-            splitContainer1.SplitterWidth = 10;
+            splitContainer1.SplitterWidth = 13;
             splitContainer1.TabIndex = 5;
             // 
             // splitContainer2
@@ -153,7 +157,8 @@
             splitContainer2.BackColor = SystemColors.Control;
             splitContainer2.BorderStyle = BorderStyle.Fixed3D;
             splitContainer2.Dock = DockStyle.Fill;
-            splitContainer2.Location = new Point(0, 24);
+            splitContainer2.Location = new Point(0, 30);
+            splitContainer2.Margin = new Padding(3, 4, 3, 4);
             splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
@@ -164,16 +169,17 @@
             // 
             splitContainer2.Panel2.BackColor = SystemColors.Control;
             splitContainer2.Panel2.Controls.Add(splitContainer3);
-            splitContainer2.Size = new Size(938, 601);
-            splitContainer2.SplitterDistance = 358;
+            splitContainer2.Size = new Size(1072, 803);
+            splitContainer2.SplitterDistance = 409;
             splitContainer2.SplitterIncrement = 5;
-            splitContainer2.SplitterWidth = 10;
+            splitContainer2.SplitterWidth = 11;
             splitContainer2.TabIndex = 7;
             // 
             // splitContainer3
             // 
             splitContainer3.Dock = DockStyle.Fill;
             splitContainer3.Location = new Point(0, 0);
+            splitContainer3.Margin = new Padding(3, 4, 3, 4);
             splitContainer3.Name = "splitContainer3";
             splitContainer3.Orientation = Orientation.Horizontal;
             // 
@@ -184,8 +190,9 @@
             // splitContainer3.Panel2
             // 
             splitContainer3.Panel2.Controls.Add(richTextBox_stepText);
-            splitContainer3.Size = new Size(566, 597);
-            splitContainer3.SplitterDistance = 502;
+            splitContainer3.Size = new Size(648, 799);
+            splitContainer3.SplitterDistance = 671;
+            splitContainer3.SplitterWidth = 5;
             splitContainer3.TabIndex = 2;
             // 
             // pictureBox1
@@ -193,8 +200,9 @@
             pictureBox1.BackColor = SystemColors.ControlDarkDark;
             pictureBox1.Dock = DockStyle.Fill;
             pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(566, 502);
+            pictureBox1.Size = new Size(648, 671);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -203,8 +211,9 @@
             // 
             richTextBox_stepText.Dock = DockStyle.Fill;
             richTextBox_stepText.Location = new Point(0, 0);
+            richTextBox_stepText.Margin = new Padding(3, 4, 3, 4);
             richTextBox_stepText.Name = "richTextBox_stepText";
-            richTextBox_stepText.Size = new Size(566, 91);
+            richTextBox_stepText.Size = new Size(648, 123);
             richTextBox_stepText.TabIndex = 1;
             richTextBox_stepText.Text = "";
             richTextBox_stepText.TextChanged += richTextBox_stepText_TextChanged;
@@ -212,31 +221,33 @@
             // 
             // menuStrip1
             // 
+            menuStrip1.ImageScalingSize = new Size(20, 20);
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, ToolStripMenuItem_Recording, helpToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(938, 24);
+            menuStrip1.Padding = new Padding(7, 3, 0, 3);
+            menuStrip1.Size = new Size(1072, 30);
             menuStrip1.TabIndex = 8;
             menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newToolStripMenuItem, openToolStripMenuItem, toolStripMenuItem1_SaveAs, toolStripSeparator1, exportToolStripMenuItem });
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newToolStripMenuItem, openToolStripMenuItem, toolStripMenuItem1_SaveAs, toolStripSeparator1, exportToolStripMenuItem, exportToolMDStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(37, 20);
+            fileToolStripMenuItem.Size = new Size(46, 24);
             fileToolStripMenuItem.Text = "File";
             // 
             // newToolStripMenuItem
             // 
             newToolStripMenuItem.Name = "newToolStripMenuItem";
-            newToolStripMenuItem.Size = new Size(114, 22);
+            newToolStripMenuItem.Size = new Size(227, 26);
             newToolStripMenuItem.Text = "New";
             newToolStripMenuItem.Click += newToolStripMenuItem_Click;
             // 
             // openToolStripMenuItem
             // 
             openToolStripMenuItem.Name = "openToolStripMenuItem";
-            openToolStripMenuItem.Size = new Size(114, 22);
+            openToolStripMenuItem.Size = new Size(227, 26);
             openToolStripMenuItem.Text = "Open";
             openToolStripMenuItem.Click += openToolStripMenuItem_Click;
             // 
@@ -244,22 +255,30 @@
             // 
             toolStripMenuItem1_SaveAs.Enabled = false;
             toolStripMenuItem1_SaveAs.Name = "toolStripMenuItem1_SaveAs";
-            toolStripMenuItem1_SaveAs.Size = new Size(114, 22);
+            toolStripMenuItem1_SaveAs.Size = new Size(227, 26);
             toolStripMenuItem1_SaveAs.Text = "Save As";
             toolStripMenuItem1_SaveAs.Click += toolStripMenuItem1_SaveAs_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(111, 6);
+            toolStripSeparator1.Size = new Size(224, 6);
             // 
             // exportToolStripMenuItem
             // 
             exportToolStripMenuItem.Enabled = false;
             exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            exportToolStripMenuItem.Size = new Size(114, 22);
-            exportToolStripMenuItem.Text = "Export";
+            exportToolStripMenuItem.Size = new Size(227, 26);
+            exportToolStripMenuItem.Text = "Export to RTF";
             exportToolStripMenuItem.Click += exportToolStripMenuItem_Click;
+            // 
+            // exportToolMDStripMenuItem
+            // 
+            exportToolMDStripMenuItem.Enabled = false;
+            exportToolMDStripMenuItem.Name = "exportToolMDStripMenuItem";
+            exportToolMDStripMenuItem.Size = new Size(227, 26);
+            exportToolMDStripMenuItem.Text = "Export to Markdown";
+            exportToolMDStripMenuItem.Click += exportToolMDStripMenuItem_Click;
             // 
             // ToolStripMenuItem_Recording
             // 
@@ -268,26 +287,27 @@
             ToolStripMenuItem_Recording.Image = Properties.Resources.RecordTiny;
             ToolStripMenuItem_Recording.Name = "ToolStripMenuItem_Recording";
             ToolStripMenuItem_Recording.RightToLeft = RightToLeft.No;
-            ToolStripMenuItem_Recording.Size = new Size(116, 20);
+            ToolStripMenuItem_Recording.Size = new Size(146, 24);
             ToolStripMenuItem_Recording.Text = "Start Recording";
             ToolStripMenuItem_Recording.Click += ToolStripMenuItem_Recording_Click;
             // 
             // helpToolStripMenuItem
             // 
             helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            helpToolStripMenuItem.Size = new Size(44, 20);
+            helpToolStripMenuItem.Size = new Size(55, 24);
             helpToolStripMenuItem.Text = "Help";
             helpToolStripMenuItem.Click += helpToolStripMenuItem_Click;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(938, 625);
+            ClientSize = new Size(1072, 833);
             Controls.Add(splitContainer2);
             Controls.Add(menuStrip1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Better Steps Recorder";
             FormClosing += Form1_FormClosing;
@@ -326,6 +346,7 @@
         private RichTextBox richTextBox_stepText;
         private SplitContainer splitContainer3;
         private ToolStripMenuItem exportToolStripMenuItem;
+        private ToolStripMenuItem exportToolMDStripMenuItem;
         private ContextMenuStrip contextMenu_ListBox_Events;
         private ToolStripMenuItem moveUpToolStripMenuItem;
         private ToolStripMenuItem moveDownToolStripMenuItem;

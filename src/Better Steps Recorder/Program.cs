@@ -19,6 +19,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using System.ComponentModel;
+using System.Windows.Media.Media3D;
 
 namespace Better_Steps_Recorder
 {
@@ -284,8 +285,7 @@ namespace Better_Steps_Recorder
                     // Copy the specified screen area to the bitmap
                     gfx.CopyFromScreen(x, y, 0, 0, new System.Drawing.Size(width, height), CopyPixelOperation.SourceCopy);
 
-                    // Draw an arrow pointing at the cursor
-                    DrawArrowAtCursor(gfx, width, height, x, y);
+
                 }
 
                 // Convert the bitmap to a memory stream
@@ -378,37 +378,73 @@ namespace Better_Steps_Recorder
         }
     }
 
-    private static string GetRtfImage(Image image, int width, int height)
-    {
-        using (MemoryStream stream = new MemoryStream())
+        private static string GetRtfImage(Image image, int cursorX, int cursorY)
         {
-            image.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
-            byte[] bytes = stream.ToArray();
-            int hexLength = bytes.Length;
+            const int cropWidth = 325;
+            const int cropHeight = 250;
 
-            StringBuilder sb = new StringBuilder();
-            sb.Append(@"{\pict\pngblip\picw");
-            sb.Append((int)(image.Width * 20)); // Image width in twips
-            sb.Append(@"\pich");
-            sb.Append((int)(image.Height * 20)); // Image height in twips
-            sb.Append(@"\picwgoal");
-            sb.Append(width * 20); // Target width in twips
-            sb.Append(@"\pichgoal");
-            sb.Append(height * 20); // Target height in twips
-            sb.Append(" ");
-            for (int i = 0; i < hexLength; i++)
+            using (Bitmap bitmap = new Bitmap(image))
             {
-                sb.AppendFormat("{0:X2}", bytes[i]);
+                // Get the bounds of the active window
+                int windowWidth = bitmap.Width;
+                int windowHeight = bitmap.Height;
+
+                // Calculate the cropping rectangle centered around the cursor
+                int cropX = cursorX - cropWidth / 2;
+                int cropY = cursorY - cropHeight / 2;
+
+                // Adjust crop area to ensure it doesn't bleed outside the window bounds
+                cropX = Math.Max(0, Math.Min(cropX, windowWidth - cropWidth));
+                cropY = Math.Max(0, Math.Min(cropY, windowHeight - cropHeight));
+
+                Rectangle cropRect = new Rectangle(cropX, cropY, cropWidth, cropHeight);
+
+                // Crop the image to the specified rectangle
+                using (Bitmap croppedBitmap = new Bitmap(cropWidth, cropHeight))
+                {
+                    using (Graphics g = Graphics.FromImage(croppedBitmap))
+                    {
+                        g.DrawImage(bitmap, new Rectangle(0, 0, cropWidth, cropHeight), cropRect, GraphicsUnit.Pixel);
+
+                        // Draw an arrow pointing at the cursor
+                        int arrowX = cursorX - cropX; // Cursor position relative to cropped image
+                        int arrowY = cursorY - cropY;
+                        DrawArrowAtCursor(g, arrowX, arrowY);
+                    }
+
+                    // Convert the cropped image to PNG format
+                    using (MemoryStream stream = new MemoryStream())
+                    {
+                        croppedBitmap.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                        byte[] bytes = stream.ToArray();
+                        int hexLength = bytes.Length;
+
+                        // Create the RTF image content
+                        StringBuilder sb = new StringBuilder();
+                        sb.Append(@"{\pict\pngblip\picw");
+                        sb.Append(cropWidth * 20); // Image width in twips
+                        sb.Append(@"\pich");
+                        sb.Append(cropHeight * 20); // Image height in twips
+                        sb.Append(@"\picwgoal");
+                        sb.Append(cropWidth * 20); // Target width in twips
+                        sb.Append(@"\pichgoal");
+                        sb.Append(cropHeight * 20); // Target height in twips
+                        sb.Append(" ");
+                        for (int i = 0; i < hexLength; i++)
+                        {
+                            sb.AppendFormat("{0:X2}", bytes[i]);
+                        }
+                        sb.Append("}");
+
+                        return sb.ToString();
+                    }
+                }
             }
-            sb.Append("}");
-
-            return sb.ToString();
         }
-    }
 
 
 
-    private static void DrawArrowAtCursor(Graphics gfx, int width, int height, int offsetX, int offsetY)
+        private static void DrawArrowAtCursor(Graphics gfx, int cursorX, int cursorY)
         {
             // Define the arrow properties
             Pen arrowPen = new Pen(Color.Magenta, 5);
@@ -416,32 +452,17 @@ namespace Better_Steps_Recorder
             arrowPen.CustomEndCap = new System.Drawing.Drawing2D.AdjustableArrowCap(5, 5); // Bigger arrow head
 
             // Define the length of the arrow
-            int arrowLength = 200;
+            int arrowLength = 50;
 
-            // Get the current cursor position
-            WindowHelper.POINT cursorPos;
-            WindowHelper.GetCursorPos(out cursorPos);
+            // Constants for the angle and length of the arrow
+            double angleDegrees = 215.0; // Angle in degrees (left of Y-axis)
+            double angleRadians = Math.PI * angleDegrees / 180.0; // Convert to radians
 
-            // Convert the screen coordinates to bitmap coordinates
-            int cursorX = cursorPos.X - offsetX;
-            int cursorY = cursorPos.Y - offsetY;
+            // Calculate the end point based on the angle
+            int endX = cursorX - (int)(arrowLength * Math.Sin(angleRadians));
+            int endY = cursorY - (int)(arrowLength * Math.Cos(angleRadians));
 
-            // Determine arrow direction: down if in top half, up if in bottom half
-            int endX, endY;
-            if (cursorY < height / 2)
-            {
-                // Cursor is in the top half, arrow points down
-                endX = cursorX;
-                endY = cursorY + arrowLength;
-            }
-            else
-            {
-                // Cursor is in the bottom half, arrow points up
-                endX = cursorX;
-                endY = cursorY - arrowLength;
-            }
-
-            // Draw the arrow
+            // Draw the arrow pointing at the given coordinates at a 35-degree angle left off the Y-axis
             gfx.DrawLine(arrowPen, endX, endY, cursorX, cursorY);
         }
         public static Image Base64ToImage(string base64String)
